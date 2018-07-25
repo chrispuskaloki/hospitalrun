@@ -1,19 +1,19 @@
-FROM node:boron-slim
-LABEL maintainer Mofesola Babalola <me@mofesola.com>
+FROM ubuntu 16.04
+LABEL maintainer Sammy Juma <awscloudacademy>
 
 #Get required applications
-ENV DEBIAN_FRONTEND noninteractive
+#ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y git
 
 #Create App Directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/hospitalrun
 
 #Install Dependencies
-COPY package.json /usr/src/app
+COPY package.json /usr/src/hospitalrun
 RUN npm install --loglevel silent
 
-COPY . /usr/src/app
+COPY . /usr/src/hosptialrun
 COPY conf/entrypoint.sh .
 #Setup the DB with initial user
 RUN chmod +x conf/initcouch.sh entrypoint.sh
